@@ -1,0 +1,3 @@
+welcome: Welcome to trending news
+cancel: Good bye!
+news: Here is the news from {{ source }}. {{ news }}
