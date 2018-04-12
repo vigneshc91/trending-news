@@ -17,7 +17,7 @@ class News:
         if 'category' in param:
             params['category'] = param['category'] if param['category'] in Constants.CATEGORIES else ''
         if 'country' in param:
-            params['country'] = param['country']
+            params['country'] = Constants.COUNTRIES[param['country']] if param['country'] in Constants.COUNTRIES else param['country']
         if 'q' in param:
             params['q'] = param['q']
         

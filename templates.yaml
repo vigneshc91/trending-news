@@ -1,3 +1,8 @@
 welcome: Welcome to trending news
 cancel: Good bye!
 news: Here is the news from {{ source }}. {{ news }}
+detail_news_error: You haven't searched for any news. You need to search for a news and read more about it
+next_news_error: You haven't searched for any news. You need to search for some news to read next
+previous_news_error: You haven't searched for any news. You need to search for some news to read previous
+not_having_further_news: You don't further news in this category. Refine your search for more results
+not_having_previous_news: You don't have previous news.
