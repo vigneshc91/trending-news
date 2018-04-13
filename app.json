@@ -1,0 +1,11 @@
+{
+    "name": "Trending News",
+    "description": "Trending news api for alexa skill kit",
+    "keywords": [
+      "flask",
+      "python",
+      "flask-ask",
+      "alexa"
+    ],
+    "repository": "https://github.com/vigneshc91/trending-news"
+  }
