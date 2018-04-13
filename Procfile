@@ -1,1 +1,1 @@
-web gunicorn alexa:app
+web gunicorn app:app
