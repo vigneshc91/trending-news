@@ -9,6 +9,10 @@ ask = Ask(app, '/')
 news = News()
 logging.getLogger('flask_ask').setLevel(logging.DEBUG)
 
+@app.route('/')
+def index():
+    return 'welcome to Trending News.'
+
 @ask.launch
 def launched():
     text = render_template('welcome')
