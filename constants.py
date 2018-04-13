@@ -12,4 +12,5 @@ class Constants:
         'technology'
     ]
     COUNTRIES = mapping = {country.name: country.alpha_2 for country in pycountry.countries}
+    ALEXA_SKILL_ID = 'amzn1.ask.skill.b945408c-db12-45eb-abe7-750c3103b2fa'
     

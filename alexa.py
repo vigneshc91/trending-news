@@ -6,6 +6,7 @@ import logging
 
 app = Flask(__name__)
 ask = Ask(app, '/')
+app.config['ASK_APPLICATION_ID'] = Constants.ALEXA_SKILL_ID
 news = News()
 logging.getLogger('flask_ask').setLevel(logging.DEBUG)
 
