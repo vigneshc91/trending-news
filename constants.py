@@ -1,6 +1,7 @@
 import pycountry
 
 class Constants:
+    URL = 'https://newsapi.org/v2/top-headlines'
     API_KEY = 'ace5d4f3d2014c4696827b150bd6e982'
     CATEGORIES = [
         'business',

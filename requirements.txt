@@ -2,5 +2,4 @@ Flask==0.12.2
 Flask-Ask==0.9.7
 Jinja2==2.8
 gunicorn==19.6.0
-newsapi-python==0.0.2
 pycountry==18.2.23

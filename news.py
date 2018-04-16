@@ -1,10 +1,7 @@
-from newsapi import NewsApiClient
+import requests
 from constants import Constants
 
 class News:
-
-    def __init__(self):
-        self.newsapi = NewsApiClient(api_key=Constants.API_KEY)
 
     def getHeadlines(self, param):
         params = {
@@ -21,12 +18,8 @@ class News:
         if 'q' in param:
             params['q'] = param['q']
         
-        top_headlines = self.newsapi.get_top_headlines(
-            q=params['q'],
-            sources=params['sources'],
-            category=params['category'],
-            language=params['language'],
-            country=params['country']
-        )
-
+        headers = {'Authorization': 'Bearer '+Constants.API_KEY}
+        
+        top_headlines = requests.get(url=Constants.URL, params=params, headers=headers).json()
+        
         return top_headlines
