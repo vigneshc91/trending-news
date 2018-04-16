@@ -40,9 +40,10 @@ def trendingNews(country, category):
     session.attributes['current'] = 0
     
     text = headlines['articles'][0]['title']
+    description = headlines['articles'][0]['description']
     response = render_template('news', source=headlines['articles'][0]['source']['name'], news=text)
 
-    return question(response)
+    return question(response).simple_card(title=text, content=description)
 
 @ask.intent('DetailIntent')
 def readMoreAboutNews():
@@ -58,8 +59,13 @@ def readNextNewsIntent():
         if session.attributes['current'] < session.attributes['news']['totalResults'] :
             session.attributes['current'] += 1
             headlines = session.attributes['news']
+            
             text = headlines['articles'][session.attributes['current']]['title']
+            description = headlines['articles'][session.attributes['current']]['description']
+            
             response = render_template('news', source=headlines['articles'][session.attributes['current']]['source']['name'], news=text)
+
+            return question(response).simple_card(title=text, content=description)
         else:
             response = render_template('not_having_further_news')
     else:
@@ -72,8 +78,12 @@ def readPreviousNewsIntent():
         if session.attributes['current'] > 0 :
             session.attributes['current'] -= 1
             headlines = session.attributes['news']
+
             text = headlines['articles'][session.attributes['current']]['title']
+            description = headlines['articles'][session.attributes['current']]['description']
+            
             response = render_template('news', source=headlines['articles'][session.attributes['current']]['source']['name'], news=text)
+            return question(response).simple_card(title=text, content=description)
         else :
             response = render_template('not_having_previous_news')
     else:

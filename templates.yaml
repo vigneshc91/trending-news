@@ -1,4 +1,4 @@
-welcome: Welcome to trending news, You can ask for any trending news any country
+welcome: Welcome to trending news, You can ask for any trending news in any country
 cancel: Good bye!
 news: Here is the news from {{ source }}. {{ news }}
 detail_news_error: You haven't searched for any news. You need to search for a news and read more about it
