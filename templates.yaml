@@ -7,3 +7,4 @@ previous_news_error: You haven't searched for any news. You need to search for s
 not_having_further_news: You don't further news in this category. Refine your search for more results
 not_having_previous_news: You don't have previous news.
 categories_list: The available categories are {{ categories }}
+no_results: We don't find any results for your search, could you refine your search

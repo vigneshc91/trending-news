@@ -34,16 +34,18 @@ def trendingNews(country, category):
         params['category'] = category
 
     headlines = news.getHeadlines(params)
-    
-    session.attributes['news'] = headlines
-    session.attributes['total'] = headlines['totalResults']
-    session.attributes['current'] = 0
-    
-    text = headlines['articles'][0]['title']
-    description = headlines['articles'][0]['description']
-    response = render_template('news', source=headlines['articles'][0]['source']['name'], news=text)
-
-    return question(response).simple_card(title=text, content=description)
+    if headlines['totalResults'] > 0:
+        session.attributes['news'] = headlines
+        session.attributes['total'] = headlines['totalResults']
+        session.attributes['current'] = 0
+        
+        text = headlines['articles'][0]['title']
+        description = headlines['articles'][0]['description']
+        response = render_template('news', source=headlines['articles'][0]['source']['name'], news=text)
+        return question(response).simple_card(title=text, content=description)
+    else:
+        response = render_template('no_results')
+        return question(response)
 
 @ask.intent('DetailIntent')
 def readMoreAboutNews():
