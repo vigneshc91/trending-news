@@ -5,11 +5,9 @@ class News:
 
     def getHeadlines(self, param):
         params = {
-            'language': 'en',
             'category': '',
-            'country': '',
-            'q': '',
-            'sources' : ''
+            'country': 'in',
+            'q': ''
         }
         if 'category' in param:
             params['category'] = param['category'] if param['category'] in Constants.CATEGORIES else ''
