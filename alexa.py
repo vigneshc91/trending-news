@@ -2,6 +2,7 @@ from flask import Flask, render_template
 from flask_ask import Ask, statement, question, session
 from news import News
 from constants import Constants
+from langdetect import lang
 import logging
 
 app = Flask(__name__)
@@ -40,6 +41,14 @@ def trendingNews(country, category):
 
     headlines = news.getHeadlines(params)
     if headlines['totalResults'] > 0:
+        
+        # Removes non english articles
+        for index, item in enumerate(headlines['articles']):
+            titleLang = lang(item['title'])
+            descriptionLang = lang(item['description'])
+            if titleLang != 'en' and descriptionLang != 'en':
+                del headlines['articles'][index]
+
         session.attributes['news'] = headlines
         session.attributes['total'] = headlines['totalResults']
         session.attributes['current'] = 0

@@ -4,3 +4,4 @@ Jinja2==2.8
 gunicorn==19.6.0
 pycountry==18.2.23
 cryptography==2.0
+langdetect==1.0.7

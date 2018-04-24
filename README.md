@@ -6,3 +6,4 @@ Trending news api for usage with alexa skill kit, uses news.api
 - Flask ASK
 - Jinja2
 - PyCountry
+- Langdetect
