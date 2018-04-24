@@ -6,6 +6,6 @@ next_news_error: You haven't searched for any news. You need to search for some 
 previous_news_error: You haven't searched for any news. You need to search for some news to read previous
 not_having_further_news: You don't further news in this category. Refine your search for more results
 not_having_previous_news: You don't have previous news.
-categories_list: The available categories are {{ categories }}
+categories_list: The available categories are {{ categories }}. What category are you looking for.
 no_results: We don't find any results for your search, could you refine your search
 help: You can ask for trending news in any country
