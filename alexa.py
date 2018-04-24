@@ -100,7 +100,7 @@ def readPreviousNewsIntent():
 @ask.intent('ListCategoryIntent')
 def listCategoryIntent():
     response = render_template('categories_list', categories= ', '.join(Constants.CATEGORIES))
-    return question(response)
+    return statement(response)
 
 if __name__ == '__main__':
     app.run(debug=True)
