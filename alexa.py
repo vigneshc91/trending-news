@@ -55,7 +55,7 @@ def trendingNews(country, category):
 @ask.intent('DetailIntent')
 def readMoreAboutNews():
     if 'news' in session.attributes:
-        response = render_template('detail_news', news=session.attributes['news']['articles'][session.attributes['current']]['description'])
+        response = session.attributes['news']['articles'][session.attributes['current']]['description'] + '. Do you want to read the next or previous news.'
     else:
         response = render_template('detail_news_error')
     return question(response)
