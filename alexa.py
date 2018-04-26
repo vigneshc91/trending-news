@@ -2,6 +2,9 @@ from flask import Flask, render_template
 from flask_ask import Ask, statement, question, session
 from news import News
 from constants import Constants
+from langdetect import detect
+from googletrans import Translator
+import json
 import logging
 
 app = Flask(__name__)
@@ -43,9 +46,14 @@ def trendingNews(country, category):
         session.attributes['news'] = headlines
         session.attributes['total'] = len(headlines['articles'])
         session.attributes['current'] = 0
-        
+
         text = headlines['articles'][0]['title']
-        description = headlines['articles'][0]['description']
+        description = json.loads(json.dumps(headlines['articles'][0]))['description']
+        if detect(text) != 'en':
+            translator = Translator()
+            text = headlines['articles'][0]['title'] = translator.translate(text).text
+        if description is not None and detect(description) != 'en':
+            description = ''
         response = render_template('news', source=headlines['articles'][0]['source']['name'], news=text)
         return question(response).simple_card(title=text, content=description)
     else:
@@ -55,7 +63,17 @@ def trendingNews(country, category):
 @ask.intent('DetailIntent')
 def readMoreAboutNews():
     if 'news' in session.attributes:
-        response = session.attributes['news']['articles'][session.attributes['current']]['description'] + '. Do you want to read the next or previous news.'
+        description = json.loads(json.dumps(session.attributes['news']['articles'][session.attributes['current']]))['description']
+        print(description)
+        if description is None:
+            response = render_template('description_error')
+        elif detect(description) != 'en':
+            translator = Translator()
+            description = session.attributes['news']['articles'][session.attributes['current']]['description'] = translator.translate(description).text
+            response = description + '. Do you want to read the next or previous news.'
+        else:
+            description = session.attributes['news']['articles'][session.attributes['current']]['description']
+            response = description + '. Do you want to read the next or previous news.'
     else:
         response = render_template('detail_news_error')
     return question(response)
@@ -69,7 +87,11 @@ def readNextNewsIntent():
             
             text = headlines['articles'][session.attributes['current']]['title']
             description = headlines['articles'][session.attributes['current']]['description']
-            
+            if text is not 'null' and detect(text) != 'en':
+                translator = Translator()
+                text = headlines['articles'][session.attributes['current']]['title'] = translator.translate(text).text
+            if description is not None and detect(description) != 'en':
+                description = ''
             response = render_template('news', source=headlines['articles'][session.attributes['current']]['source']['name'], news=text)
 
             return question(response).simple_card(title=text, content=description)
@@ -88,7 +110,8 @@ def readPreviousNewsIntent():
 
             text = headlines['articles'][session.attributes['current']]['title']
             description = headlines['articles'][session.attributes['current']]['description']
-            
+            if description is not None and detect(description) != 'en':
+                description = ''
             response = render_template('news', source=headlines['articles'][session.attributes['current']]['source']['name'], news=text)
             return question(response).simple_card(title=text, content=description)
         else :

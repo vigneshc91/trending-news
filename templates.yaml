@@ -1,6 +1,6 @@
 welcome: Welcome to trending news, You can ask for any trending news in any country
 cancel: Good bye!
-news: Here is the news from {{ source }}. {{ news }}. Do you want to know more about the news or read the next or previous news
+news: Here is the news from {{ source }}. {{ news }}. Do you want to know more about the news, or read the next or previous news
 detail_news_error: You haven't searched for any news. You need to search for a news and read more about it
 next_news_error: You haven't searched for any news. You need to search for some news to read next
 previous_news_error: You haven't searched for any news. You need to search for some news to read previous
@@ -9,3 +9,4 @@ not_having_previous_news: You don't have previous news.
 categories_list: The available categories are {{ categories }}. What category are you looking for.
 no_results: We don't find any results for your search, could you refine your search
 help: You can ask for trending news in any country
+description_error: Description is not available for this news. You can read next or previous news
